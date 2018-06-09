@@ -1,7 +1,8 @@
 from flask import Flask, request
-from flask import render_template
 from flask import redirect
+from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
+
 import utilities.log_utility as utilities
 
 logger = utilities.setup_custom_logger(__name__)
@@ -83,4 +84,4 @@ def resolve_task(task_id):
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5050)
+    app.run(host='0.0.0.0', port=5050)
