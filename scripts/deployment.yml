@@ -1,0 +1,23 @@
+---
+- hosts: todo_app
+  gather_facts: no
+
+  tasks:
+  - name: pull an image
+    docker_image:
+      name: ronpel88/{{ image_name }}:{{ image_version }}
+
+  - name: stop container
+    docker_container:
+      name: todo_app
+      state: stopped
+
+
+  - name: start container
+    docker_container:
+      name: todo_app
+      image: ronpel88/{{ image_name }}:{{ image_version }}
+      state: started
+      restart: yes
+      ports:
+        - "80:5050"
