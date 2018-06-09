@@ -1,0 +1,6 @@
+2018-06-09 15:11:45 INFO     app.py:34 [ tasks list: [] ]
+2018-06-09 15:11:45 INFO     app.py:35 [ going to display html template ]
+2018-06-09 15:11:51 INFO     app.py:44 [ going to add new task to db. task info: <Content clean house> ]
+2018-06-09 15:11:51 INFO     app.py:47 [ task was added successfully ]
+2018-06-09 15:11:51 INFO     app.py:34 [ tasks list: [<Content clean house>] ]
+2018-06-09 15:11:51 INFO     app.py:35 [ going to display html template ]
