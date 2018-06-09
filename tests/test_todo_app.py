@@ -1,18 +1,17 @@
 import os
 import sys
 import unittest
+import requests
+from flask_api import FlaskAPI
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/tiny_web_app")
-
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/todo_app")
+# app = FlaskAPI(__name__)
 
 class BasicAppTests(unittest.TestCase):
     """ Unittests """
 
-    def test_hello2(self):
-        rv = self.app.get('/add', data=dict(
-            title='<Hello>',
-            text='<strong>HTML</strong> allowed here'
-        ), follow_redirects=True)
-        assert b'No entries here so far' not in rv.data
-        assert b'&lt;Hello&gt;' in rv.data
-        assert b'<strong>HTML</strong> allowed here' in rv.data
+    def test_example(self):
+        self.assertEqual(True, True)
+
+if __name__ == "__main__":
+    unittest.main()
