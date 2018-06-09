@@ -14,5 +14,8 @@ class BasicAppTests(unittest.TestCase):
     def test_example(self):
         self.assertEqual(True, True)
 
+    def test_example2(self):
+        self.assertEqual(True, False)
+
 if __name__ == "__main__":
     unittest.main()
