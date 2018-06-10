@@ -61,14 +61,14 @@ Creation of ci/cd job -
       - Build docker image according to Dockerfile  
       - Tag the created image with docker hub repo name, release version, build number  
       - Push the created image to docker hub  
-    ## cd:  
+    ## CD:  
       - Run ansible playbook witch do as followed:  
-        Playbook:  
-        Pull docker image from docker hub  
-        Stop existing container (if exist)  
-        Start  container from the image we pull, ports 80==>5050  
-        Inventory:  
-        Inventory should contain a group which called todo_app, with the aws server inner ip and the user  
+        * Playbook:  
+          Pull docker image from docker hub  
+          Stop existing container (if exist)  
+          Start  container from the image we pull, ports 80==>5050  
+        * Inventory:  
+          Inventory should contain a group which called todo_app, with the aws server inner ip and the user  
  
  
  ### Ehe end :) ENJOY...
