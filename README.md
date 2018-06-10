@@ -6,7 +6,6 @@
 
 ## Prerequisites
 ----
-
 ### Prerequisites - web application (codewise):  
 1. Project should be based on python and including tests  
 2. Code should be pushed to github (public repo)  
@@ -44,7 +43,6 @@
 
 ### application -   
 1. AWS security group - expose access to anyone that want to access application (80, 0.0.0.0/0) 
-
 ----
 
 # CI/CD -
