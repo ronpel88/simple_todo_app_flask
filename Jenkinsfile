@@ -4,7 +4,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'buildImages', defaultValue: true, description: 'Build images')
-        string(name: 'VERSION', defaultValue: '1', description: 'image version'),
+        string(name: 'VERSION', defaultValue: '1', description: 'image version')
         string(name: 'IMAGE_NAME', defaultValue: 'simple_todo_app_flask', description: 'base image name')
     }
 
