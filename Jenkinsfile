@@ -3,7 +3,6 @@ pipeline {
     agent any
 
     parameters {
-        booleanParam(name: 'buildImages', defaultValue: true, description: 'Build images')
         string(name: 'VERSION', defaultValue: '1', description: 'image version')
         string(name: 'IMAGE_NAME', defaultValue: 'simple_todo_app_flask', description: 'base image name')
     }
@@ -19,72 +18,23 @@ pipeline {
 
     stages {
 
-        stage('Build images') {
-            when { expression { params.buildImages } }
+        stage('Build image') {
             steps {
-                sh './build.sh'
+                sh './build.sh build ${params.IMAGE_NAME}'
             }
         }
 
-        stage('Push images') {
-            when { expression { params.buildImages } }
+        stage('Tag image') {
             steps {
-                sh './build.sh push'
+                sh './build.sh tag ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
             }
         }
 
-        stage('Deploy to staging') {
-            when { expression { BRANCH_NAME == 'master' && params.deployToStaging } }
-            agent { label 'staging' } // Execute on staging slave (connected to staging Kubernetes cluster)
+        stage('Push image') {
             steps {
-                script {
-                    deploy "staging", "staging"
-                }
-            }
-        }
-
-        stage('Deploy to automation') {
-            when { expression { BRANCH_NAME == 'master' && params.deployToAutomation } }
-            agent { label 'staging' } // Execute on staging slave (connected to staging Kubernetes cluster)
-            steps {
-                script {
-                    deploy "staging", "automation"
-                }
-            }
-        }
-
-        stage('Deploy to demo') {
-            when { expression { BRANCH_NAME == 'master' && (params.deployToDemo || params.deployToDemoAndProd) } }
-            agent { label 'staging' } // Execute on staging slave (connected to staging Kubernetes cluster)
-            steps {
-                script {
-                    deploy "staging", "demo"
-                }
-            }
-        }
-
-        stage('Deploy to prod') {
-            when { expression { BRANCH_NAME == 'master' && (params.deployToProd || params.deployToDemoAndProd) } }
-            agent { label 'build' } // Execute on master (connected to prod Kubernetes cluster)
-            steps {
-                script {
-                    deploy "prod", "prod"
-                }
+                sh './build.sh push ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
             }
         }
 
     }
-}
-
-def deploy(context, namespace) {
-    echo "Going to deploy version $GIT_COMMIT"
-    echo "Deploying to Kubernetes context: $context, namespace: $namespace"
-
-    sh """
-        BUILD_CONTEXT=$context \
-        BUILD_NAMESPACE=$namespace \
-        BUILD_TAG=$GIT_COMMIT \
-        BUILD_DEBUG=$params.debug \
-        ./deploy.sh
-        """
 }
