@@ -21,7 +21,13 @@ pipeline {
 
         stage('Build image') {
             steps {
-                bash 'scripts/build.sh build ${params.IMAGE_NAME}'
+                sh 'echo "OMRIKI"'
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                sh 'scripts/build.sh build ${params.IMAGE_NAME}'
             }
         }
 
