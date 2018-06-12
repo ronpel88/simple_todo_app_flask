@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'scripts/build.sh build ${params.IMAGE_NAME}'
+                bash 'scripts/build.sh build ${params.IMAGE_NAME}'
             }
         }
 
