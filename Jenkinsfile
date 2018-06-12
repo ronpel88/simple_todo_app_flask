@@ -7,6 +7,7 @@ pipeline {
         string(name: 'IMAGE_NAME', defaultValue: 'simple_todo_app_flask', description: 'base image name')
     }
 
+
     options {
         disableConcurrentBuilds()
         timestamps()
