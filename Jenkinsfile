@@ -20,19 +20,19 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh './build.sh build ${params.IMAGE_NAME}'
+                sh './scripts/build.sh build ${params.IMAGE_NAME}'
             }
         }
 
         stage('Tag image') {
             steps {
-                sh './build.sh tag ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
+                sh './scripts/build.sh tag ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
             }
         }
 
         stage('Push image') {
             steps {
-                sh './build.sh push ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
+                sh './scripts/build.sh push ${params.IMAGE_NAME} ${params.REPO_NAME} ${params.VERSION} ${params.COMMIT_ID}'
             }
         }
 
