@@ -19,7 +19,7 @@ pipeline {
 
     stages {
 
-        stage('Build image') {
+        stage('echo ron') {
             steps {
                 sh 'echo "OMRIKI"'
             }
